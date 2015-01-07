@@ -2,10 +2,11 @@ Title         : Welcome
 Heading Base  : 2
 Author        : You
 Doc Class   : IEEEtran.cls
-Bib Style   : plainnat
+Bib Style   : abbrv
 Cite Style  : numeric
 Bibliography: paper.bib
-
+.pre-indented: language=csharp
+@html ~H1: text-align=center font-variant=small-caps font-weight=100
 
 [TITLE]
 
@@ -15,9 +16,9 @@ Madoko is a fast markdown processor for writing professional articles
 with a focus on simplicity and plain text readability.
 
 * Read the [reference manual].
-* Explore the upper-right toolbox menu to discover how Markdown works. 
+* Explore the upper-right toolbox menu to discover how Markdown works.
   + hello
-* `Alt-Q` reformats the current paragraph.
+* `Alt-Q` reformats the [text]{ color=blue } current [paragraph]{color=blue}.
 
 This is a numbered list
 
@@ -27,7 +28,15 @@ This is a numbered list
 
 Enjoy!
 
+    method Foo() { print"hi"}
+
+~ TexRaw
+\footnote{test}
+~
+
 [reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko refrence manual"
+
+[INCLUDE=intro]
 
 # Reference {-}
 
