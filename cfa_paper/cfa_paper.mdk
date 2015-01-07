@@ -1,43 +1,118 @@
-Title         : Welcome
+Title         : Lessons Learned Creating a Code Review Data Platform: The Story of CodeFlow Analytics
 Heading Base  : 2
-Author        : You
+Author        : Christian Bird
+Email         : cbird@microsoft.com
+Affiliation   : Microsoft Research
+Author        : Trevor Carnahan
+Email         : trevorc@microsoft.com
+Affiliation   : Microsoft
+Author        : Michaela Greiler
+Email         : mgreiler@microsoft.com
+Affiliation   : Microsoft
 Doc Class   : IEEEtran.cls
 Bib Style   : abbrv
 Cite Style  : numeric
 Bibliography: paper.bib
 .pre-indented: language=csharp
-@html ~H1: text-align=center font-variant=small-caps font-weight=100
+@html ~H1: font-variant=small-caps font-weight=100
 
 [TITLE]
 
-# Madoko 
+# Introduction
 
-Madoko is a fast markdown processor for writing professional articles
-with a focus on simplicity and plain text readability.
+The purpose of this paper is two-fold. First we describe CodeFlow
+Analytics (CFA), the system that we built to continually gather data from
+the primary code review system at Microsoft and make it available to
+researchers and development teams in an easily consumable way. Second, we
+follow up with teams after having the tool mature for one year to see how
+the teams are using CFA, why they are using it, what challenges they have
+run into, what they liked, and what they disliked. While some of the
+lessons that we learned may be specific to Microsoft or code review data,
+we hope that many of the insights we gained from this endeavor are
+general enough to inform other "software analytics platform" efforts.
 
-* Read the [reference manual].
-* Explore the upper-right toolbox menu to discover how Markdown works.
-  + hello
-* `Alt-Q` reformats the [text]{ color=blue } current [paragraph]{color=blue}.
+# Description of Code Review, Code Flow, and our System
 
-This is a numbered list
+Why is code review performed?  How is it conducted?  Brief description of CodeFlow itself.
+Data is stored in xml files that are hard to query.  MS has a history and growing trend
+of wanting to track, measure, and improve. CFA was created in an effort to gether code
+review data so that we could perform research and teams across MS could access their data.
 
-1. friend
-1. tree
-1. house [@rigby2012contemporary]
+We collect raw data every ten minutes so it's up to date.  Every two hours we generate a data cube.
+What design decisions did we make.
 
-Enjoy!
+# Uses in Research
 
-    method Foo() { print"hi"}
+## Understanding code review at MS
 
-~ TexRaw
-\footnote{test}
-~
+Cite [@bacchelli2013eoc;@rigby2013convergent] 
 
-[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko refrence manual"
+## Identifying subjects of study that do Code Review
 
-[INCLUDE=intro]
+We are able to identify users of code review, teams that use code review, or particular code reviews that 
+fulfill particular criteria
+Cite [@barnett2015decomposition]
 
-# Reference {-}
+## Building research platforms
+
+Allow us to get data to build ClusterChanges and Reviewer Recommendation.
+
+# As Used by Teams
+
+## What are they trying to do?
+
+ * track their own performance
+   * common metrics are time to first response, first response after new
+     iteration, time to completion
+     
+     
+Some teams want to track new people or identify outliers such as people that
+take tons of iterations.
+
+Some managers want to compare team A to team B
+
+
+## Things we did right
+
+Having a web page and example templates was very useful. Many
+participants indicated they were able to get started using it in less
+than an hour.
+
+We have a wiki that contains documentation. It includes templates.
+getting started guides for various job roles and tasks.
+
+Many ways to access the data:
+  * SQL interface
+  * MDX
+  * Excel Power Pivot
+  * Rest Interface
+  * Web natural language interface
+  
+Many participants indicated they appreciated the strong level of support.
+We created a mailing list for anyone to email that we all monitored. Most
+requests and questions were responded to within 24 hours. We observed
+that getting help with problems and perceived available support gave
+teams confidence to use CFA.
+  
+
+## Things we need to improve
+
+Many teams use automated systems (bots) and they can skew metrics. These
+bots may submit build results, run lint-type tools, report code coverage,
+etc. The teams want metrics on purely human behavior. One team always had
+initial response time of less than one minute.
+
+Some metrics are not available in the cube. For instance, one team wanted
+to know time to first response after each iteration and we don't
+currently compute that. These items go on our backlog feature list.
+
+Their ways of using data doesn't match our design decisions. For
+instance, we decided that a review was complete if there was no activity
+for a week, but for some teams, there might be more than a week of
+inactivity so they didn't feel they could trust our metrics.
+
+
+
+# References {-}
 
 [BIB]
