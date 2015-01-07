@@ -1,6 +1,11 @@
 Title         : Welcome
 Heading Base  : 2
 Author        : You
+Doc Class   : IEEEtran.cls
+Bib Style   : plainnat
+Cite Style  : numeric
+Bibliography: paper.bib
+
 
 [TITLE]
 
@@ -18,8 +23,12 @@ This is a numbered list
 
 1. friend
 1. tree
-1. house
+1. house [@rigby2012contemporary]
 
 Enjoy!
 
 [reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko refrence manual"
+
+# Reference {-}
+
+[BIB]
